@@ -1,0 +1,999 @@
+
+/* DESAFIO PITWALL — Reprodução da referência enviada.
+   Construído apenas com HTML e CSS,
+   inclusive o layout responsivo. */
+
+:root {
+    --bg: #09090d;
+    --muted: #85858e;
+    --panel: #17171e;
+    --red: #ed0000;
+    --line: #292931;
+    --font-condensed: 'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+    --font-race: 'Racing Sans One',Impact,'Arial Black',sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #07070c;
+    color: #f8f8fa;
+    margin: 0;
+    font-family: Inter,Arial,sans-serif;
+    font-size: 13px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,input,select,textarea {
+    font: inherit;
+}
+
+.site {
+    max-width: 1120px;
+    margin: 0 auto;
+    min-width: 300px;
+    background: #09090e;
+}
+
+.header {
+    height: 76px;
+    border-bottom: 1px solid #24242b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 42px;
+    gap: 18px;
+}
+
+.logo {
+    font: italic 900 26px var(--font-condensed);
+    letter-spacing: -1.1px;
+    white-space: nowrap;
+    transform: skewX(-7deg);
+}
+
+.logo strong,.footer strong span {
+    color: var(--red);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 130px;
+}
+
+.nav a {
+    color: #acacb5;
+    font-size: 10px;
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.nav a:hover {
+    color: #fff;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    border-radius: 0;
+    font: 800 11px var(--font-condensed);
+    letter-spacing: .5px;
+    text-align: center;
+    min-height: 42px;
+    padding: 0 23px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-red {
+    background: var(--red);
+    color: #fff;
+}
+
+.btn-red:hover {
+    background: #bc0408;
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: #e5e5ea;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background: #ffffff15;
+}
+
+.nav-buy {
+    min-height: 46px;
+    padding: 0 25px;
+    letter-spacing: .5px;
+}
+
+.hero {
+    height: 448px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #09090d;
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 2;
+    margin-left: 42px;
+    max-width: 590px;
+    width: 56%;
+    padding-bottom: 0;
+}
+
+.eyebrow {
+    font: 800 12px var(--font-condensed);
+    letter-spacing: 2.1px;
+    color: var(--red);
+    margin: 0 0 16px;
+}
+
+.hero h1 {
+    font-family: var(--font-race);
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -.9px;
+    line-height: .96;
+    font-size: clamp(62px,7vw,86px);
+    margin: 0;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--red);
+    white-space: nowrap;
+}
+
+.hero-description {
+    font: 500 14px/1.7 var(--font-condensed);
+    color: #9b9ba5;
+    max-width: 440px;
+    margin: 21px 0 22px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+}
+
+.hero-picture {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 45%;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--red);
+}
+
+.photo {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(24% 0,100% 0,100% 100%,2% 100%);
+    background-image: url('img/ferrari-interlagos.jpg');
+    background-size: cover;
+    background-position: 56% 66%;
+}
+
+.hero-picture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red);
+    clip-path: polygon(21% 0,25% 0,4% 100%,0 100%);
+    z-index: 2;
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg,#07070d77,transparent 38%);
+    clip-path: polygon(23% 0,100% 0,100% 100%,2% 100%);
+    pointer-events: none;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    color: white;
+    text-align: center;
+}
+
+.stats div {
+    min-width: 0;
+}
+
+.stats strong {
+    display: block;
+    font: italic 900 41px/.95 var(--font-race);
+    letter-spacing: -1px;
+}
+
+.stats span {
+    display: block;
+    font: 700 10px var(--font-condensed);
+    color: #babac2;
+    white-space: nowrap;
+}
+
+.photo-stats {
+    position: absolute;
+    z-index: 3;
+    bottom: 50px;
+    left: 19%;
+    right: 6%;
+}
+
+.mobile-stats {
+    display: none;
+}
+
+.checkered {
+    height: 11px;
+    background: repeating-linear-gradient(90deg,#ed0000 0 35px,#f8f8f8 35px 70px);
+}
+
+.content {
+    max-width: 910px;
+    width: calc(100% - 105px * 2);
+    margin: 0 auto;
+    padding: 0 0 70px;
+}
+
+.section h2 {
+    font: italic 900 32px/1.1 var(--font-race);
+    letter-spacing: -.25px;
+    margin: 0 0 20px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+}
+
+.section-num {
+    font: italic 900 17px var(--font-race);
+    color: var(--red);
+}
+
+.drivers-section {
+    padding-top: 59px;
+}
+
+.drivers {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 15px;
+}
+
+.driver {
+    min-width: 0;
+    height: 159px;
+    padding: 22px 18px 17px;
+    background: var(--panel);
+    border-top: 4px solid var(--accent);
+}
+
+.driver .number {
+    font: italic 900 75px/.94 var(--font-race);
+    color: var(--accent);
+    filter: brightness(.53);
+    display: block;
+    letter-spacing: -2px;
+}
+
+.driver-name {
+    font: 400 18px/1 var(--font-condensed);
+    white-space: nowrap;
+    margin-top: 6px;
+    letter-spacing: -.2px;
+}
+
+.driver-name b {
+    font-weight: 900;
+}
+
+.driver p {
+    color: #858590;
+    font: 500 13px var(--font-condensed);
+    margin: 4px 0 0;
+}
+
+.ferrari {
+    --accent: #f31041;
+}
+
+.mclaren {
+    --accent: #ff8c00;
+}
+
+.mercedes {
+    --accent: #00d6bc;
+}
+
+.audi {
+    --accent: #aeb0bb;
+}
+
+.standings-section {
+    padding-top: 62px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+    gap: 15px;
+    margin: 0 0 16px;
+}
+
+.filters label,.reservation label {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+    font: 800 10px var(--font-condensed);
+    letter-spacing: .9px;
+    color: #9b9ba6;
+}
+
+.filters input,.filters select,.reservation input,.reservation select,.reservation textarea {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #30303a;
+    border-radius: 0;
+    background: #0d0d14;
+    color: #ededf1;
+    outline: none;
+    padding: 0 12px;
+    font: 500 13px var(--font-condensed);
+    letter-spacing: 0;
+}
+
+.filters input::placeholder,.reservation input::placeholder,.reservation textarea::placeholder {
+    color: #666671;
+    opacity: 1;
+}
+
+.filters input:focus,.filters select:focus,.reservation input:focus,.reservation select:focus,.reservation textarea:focus {
+    border-color: var(--red);
+}
+
+.filters select,.reservation select {
+    color: #e0e0e5;
+    cursor: pointer;
+    color-scheme: dark;
+}
+
+.filter-btn {
+    min-height: 44px;
+    padding: 0 21px;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.standings {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    background: #16161d;
+    color: #dddde2;
+    font: 500 13px var(--font-condensed);
+    text-align: left;
+}
+
+.standings th {
+    font: 800 11px var(--font-condensed);
+    letter-spacing: .8px;
+    color: #9999a5;
+    background: #1c1c25;
+    padding: 13px 14px;
+}
+
+.standings td {
+    padding: 13px 14px;
+    height: 51px;
+    border-bottom: 1px solid #282830;
+}
+
+.standings tbody tr:nth-child(even) {
+    background: #15151b;
+}
+
+.standings .leader {
+    background: #34161c;
+}
+
+.standings th:first-child {
+    width: 11%;
+}
+
+.standings th:nth-child(2) {
+    width: 26%;
+}
+
+.standings th:nth-child(3) {
+    width: 16%;
+}
+
+.standings th:nth-child(4) {
+    width: 15%;
+}
+
+.standings th:nth-child(5) {
+    width: 17%;
+}
+
+.standings th:nth-child(6) {
+    width: 15%;
+}
+
+.pos {
+    display: inline-grid;
+    place-items: center;
+    background: #eeeef0;
+    color: #111116;
+    width: 27px;
+    height: 28px;
+    font: 900 17px var(--font-condensed);
+}
+
+.pos.first {
+    background: #ed0000;
+    color: #fff;
+}
+
+.pilot {
+    position: relative;
+    padding-left: 26px!important;
+    white-space: nowrap;
+}
+
+.pilot::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 4px;
+    background: #ccc;
+}
+
+.pilot-orange::before {
+    background: #ff8c00;
+}
+
+.pilot-red::before {
+    background: #f31041;
+}
+
+.pilot-turquoise::before {
+    background: #00d6bc;
+}
+
+.pilot-gray::before {
+    background: #aeb0bb;
+}
+
+.diff {
+    font-size: 11px;
+    color: #9595a0;
+}
+
+.points {
+    font-weight: 900;
+    color: #fff;
+}
+
+.tickets-section {
+    padding-top: 62px;
+    display: grid;
+    grid-template-columns: 36.5% 1fr;
+    gap: 41px;
+    align-items: start;
+}
+
+.tickets-info p {
+    font: 500 14px/1.5 var(--font-condensed);
+    color: #9898a2;
+    margin: 0 0 22px;
+}
+
+.tickets-info h2 {
+    margin-bottom: 21px;
+}
+
+.alert {
+    background: #241f0d;
+    border-left: 4px solid #ffda00;
+    padding: 15px;
+    color: #ffcb05;
+    font: 700 14px var(--font-condensed);
+    margin-bottom: 7px;
+}
+
+.prices>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid #292930;
+    padding: 16px 0;
+    font: 500 15px var(--font-condensed);
+}
+
+.prices strong {
+    color: var(--red);
+    font: 800 15px var(--font-condensed);
+}
+
+.reservation {
+    border-top: 4px solid var(--red);
+    background: #1a1a22;
+    padding: 30px 28px 26px;
+}
+
+.form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 18px;
+}
+
+.form-fields .full {
+    grid-column: 1/-1;
+}
+
+.reservation input,.reservation select {
+    min-height: 43px;
+    background: #0d0d14;
+    border: 1px solid #2a2a33;
+}
+
+.reservation textarea {
+    resize: vertical;
+    min-height: 78px;
+    padding: 12px;
+}
+
+.reservation input[type=file] {
+    padding: 7px 9px;
+    min-height: 43px;
+    border: 1px dashed #292933;
+    font-size: 12px;
+}
+
+.reservation input[type=file]::file-selector-button {
+    background: #dadade;
+    border: 0;
+    color: #101018;
+    margin-right: 9px;
+    font: 600 11px Arial,sans-serif;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.reservation small {
+    font: 500 10px var(--font-condensed);
+    letter-spacing: 0;
+    color: #8d8d98;
+    margin-top: -3px;
+}
+
+.reserve-btn {
+    width: 100%;
+    margin-top: 19px;
+    min-height: 46px;
+}
+
+.footer {
+    min-height: 70px;
+    border-top: 1px solid #282830;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    color: #73737d;
+    font: 500 12px var(--font-condensed);
+}
+
+.footer strong {
+    font-weight: 800;
+    color: #f0f0f0;
+}
+
+@media(max-width:900px) and (min-width:601px) {
+    .header {
+        padding: 0 25px;
+    }
+
+    .nav {
+        margin-left: 0;
+        gap: 18px;
+    }
+
+    .hero-copy {
+        margin-left: 28px;
+    }
+
+    .content {
+        width: calc(100% - 90px);
+    }
+
+    .hero h1 {
+        font-size: 64px;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+
+    .tickets-section {
+        gap: 22px;
+    }
+
+    .driver {
+        padding: 18px 10px;
+    }
+
+    .driver-name {
+        font-size: 15px;
+    }
+
+}
+
+@media(max-width:600px) {
+    body {
+        background: #09090e;
+    }
+
+    .site {
+        width: 100%;
+    }
+
+    .header {
+        height: 70px;
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .nav-buy {
+        min-height: 37px;
+        font-size: 10px;
+        padding: 0 17px;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 440px;
+        display: block;
+        background: #0d0d14;
+    }
+
+    .hero-picture {
+        display: none;
+    }
+
+    .hero:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg,rgba(9,9,14,.85),rgba(9,9,14,.77)),url('img/ferrari-interlagos.jpg') 53% 60%/cover no-repeat;
+        opacity: .64;
+    }
+
+    .hero-copy {
+        width: auto;
+        max-width: none;
+        margin: 0;
+        padding: 43px 19px 23px;
+        display: flex;
+        flex-direction: column;
+        min-height: 440px;
+    }
+
+    .eyebrow {
+        font-size: 11px;
+        letter-spacing: 1.4px;
+        line-height: 1.3;
+        max-width: 210px;
+        margin-bottom: 13px;
+    }
+
+    .hero h1 {
+        font-size: clamp(54px,12.5vw,72px);
+        line-height: .98;
+        letter-spacing: -.4px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+        line-height: 1.55;
+        max-width: 320px;
+        margin: 17px 0 19px;
+    }
+
+    .hero-actions {
+        gap: 11px;
+        max-width: 340px;
+    }
+
+    .hero-actions .btn {
+        min-height: 57px;
+        padding: 0 12px;
+        white-space: normal;
+        line-height: 1.2;
+        flex: 1;
+        font-size: 12px;
+    }
+
+    .hero-actions .btn-red {
+        flex: 1.2;
+    }
+
+    .mobile-stats {
+        display: flex;
+        justify-content: space-between;
+        max-width: 315px;
+        margin-top: auto;
+        padding-top: 24px;
+        gap: 7px;
+    }
+
+    .mobile-stats strong {
+        font-size: 34px;
+    }
+
+    .mobile-stats span {
+        font-size: 10px;
+    }
+
+    .checkered {
+        height: 10px;
+        background: repeating-linear-gradient(90deg,#e90007 0 38px,#f2f2f5 38px 76px,#101019 76px 81px);
+    }
+
+    .content {
+        width: calc(100% - 38px);
+        max-width: none;
+        padding-bottom: 44px;
+    }
+
+    .section h2 {
+        font-size: 29px;
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .section-num {
+        font-size: 16px;
+    }
+
+    .drivers-section {
+        padding-top: 57px;
+    }
+
+    .drivers {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 12px;
+    }
+
+    .driver {
+        height: 166px;
+        padding: 17px 15px;
+    }
+
+    .driver .number {
+        font-size: 62px;
+    }
+
+    .driver-name {
+        font-size: 17px;
+        white-space: normal;
+        margin-top: 9px;
+        line-height: .95;
+        max-width: 125px;
+    }
+
+    .driver p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .standings-section {
+        padding-top: 59px;
+    }
+
+    .filters {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        align-items: stretch;
+        margin-bottom: 14px;
+    }
+
+    .filters label {
+        font-size: 10px;
+    }
+
+    .filters input,.filters select {
+        min-height: 45px;
+        font-size: 13px;
+    }
+
+    .filter-btn {
+        min-height: 46px;
+    }
+
+    .standings {
+        font-size: 13px;
+    }
+
+    .standings th {
+        font-size: 10px;
+        padding: 12px 9px;
+    }
+
+    .standings td {
+        padding: 10px 8px;
+        height: 50px;
+    }
+
+    .standings th:nth-child(n+4),.standings td:nth-child(n+4) {
+        display: none;
+    }
+
+    .standings th:first-child {
+        width: 22%;
+    }
+
+    .standings th:nth-child(2) {
+        width: 46%;
+    }
+
+    .standings th:nth-child(3) {
+        width: 32%;
+    }
+
+    .pos {
+        width: 24px;
+        height: 24px;
+        font-size: 15px;
+    }
+
+    .pilot {
+        padding-left: 17px!important;
+        white-space: normal;
+    }
+
+    .pilot::before {
+        left: 8px;
+        width: 3px;
+        height: 14px;
+    }
+
+    .tickets-section {
+        padding-top: 60px;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .tickets-info h2 {
+        margin-bottom: 17px;
+    }
+
+    .tickets-info p {
+        font-size: 14px;
+    }
+
+    .reservation {
+        padding: 23px 18px;
+    }
+
+    .form-fields {
+        gap: 17px 12px;
+    }
+
+    .reservation input,.reservation select {
+        font-size: 12px;
+    }
+
+    .footer {
+        font-size: 11px;
+        text-align: center;
+        padding: 24px 15px;
+        line-height: 1.4;
+    }
+
+}
+
+@media(max-width:360px) {
+    .hero h1 {
+        font-size: 50px;
+    }
+
+    .hero-actions .btn {
+        font-size: 10px;
+    }
+
+    .driver {
+        padding: 15px 10px;
+    }
+
+    .driver-name {
+        font-size: 15px;
+    }
+
+    .nav-buy {
+        padding: 0 9px;
+    }
+
+    .stats strong {
+        font-size: 29px;
+    }
+
+}
+
+/* Ajuste preciso da linha diagonal vermelha do banner: faixa estreita como no print. */
+
+@media (min-width:601px) {
+    .hero-picture {
+        background: transparent;
+    }
+
+    .photo {
+        clip-path: polygon(38% 0,100% 0,100% 100%,8% 100%);
+        background-position: 56% 77%;
+    }
+
+    .hero-picture::before {
+        clip-path: polygon(34% 0,38% 0,8% 100%,4% 100%);
+    }
+
+    .hero-gradient {
+        clip-path: polygon(38% 0,100% 0,100% 100%,8% 100%);
+    }
+
+    .reservation textarea {
+        min-height: 111px;
+    }
+
+}
+
+@media (max-width:600px) {
+    .hero,.hero-copy {
+        min-height: 493px;
+    }
+
+}
