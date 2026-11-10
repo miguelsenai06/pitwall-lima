@@ -1,4 +1,4 @@
-# pitwall-lima# 🏎️ PITWALL — GP de São Paulo
+🏎️ PITWALL — GP de São Paulo
 
 ## 📌 Sobre o projeto
 
